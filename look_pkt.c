@@ -3,9 +3,10 @@
 #include<linux/skbuff.h> //for sk_buff struct & functions
 #include<linux/module.h> //for EXPORT_SYMBOL
 
-#define Q_SIZE 64
+#define Q_SIZE 64 // can changed 
 
-// real system call
+// /usr/src/linux-3.2.28/kernel/this code file
+// it is up to you to modify the system call number and table.
 
 struct sk_buff * skbuf_q[Q_SIZE] = {NULL, }; //circular q
 int front = 0;
