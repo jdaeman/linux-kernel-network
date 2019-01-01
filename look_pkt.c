@@ -5,6 +5,8 @@
 
 #define Q_SIZE 64
 
+// real system call
+
 struct sk_buff * skbuf_q[Q_SIZE] = {NULL, }; //circular q
 int front = 0;
 int rear = 0;
