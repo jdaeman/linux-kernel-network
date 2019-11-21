@@ -1,0 +1,276 @@
+//데이터베이스 생성
+create database project;
+
+//테이블 생성
+use project;
+create table movie (
+	m_id int not null auto_increment,
+	title varchar(128) not null,
+	genre varchar(64) not null,
+	release_date date not null,
+	run_time int not null,
+	country varchar(64) not null,
+	admission int not null,
+	director varchar(64) not null,
+	attendance int not null,
+	grade float not null,
+	#pic blob,
+
+	primary key (id)
+);
+create table actor (
+	a_id int not null auto_increment,
+	name varchar(128) not null,
+	birth date not null,
+	gender varchar(8) not null,
+	#pic blob,
+
+	primary key (a_id)
+);
+create table awards (
+	a_id int not null,
+	year year not null,
+	award varchar(128) not null,
+	
+	foreign key (a_id) references actor(a_id)
+);
+create table takes (
+	m_id int not null,
+	a_id int not null,
+	role varchar(128) not null,
+	
+	foreign key (m_id) references movie(m_id),
+	foreign key (a_id) references actor(p_id)
+);
+
+//영화 정보(movie)
+insert into movie values (null, 'Batman begins', 'Action', '2005-06-24', 139, 'US', 12, 'Christopher Nolan', 869244, 8.93);
+insert into movie values (null, 'The dark knight', 'Action', '2008-08-06', 152, 'US', 15, 'Christopher Nolan', 4175526, 10.00);
+insert into movie values (null, 'The dark knight rises', 'Action', '2012-07-19', 164, 'US', 15, 'Christopher Nolan', 6399304, 9.02);
+insert into movie values (null, '아저씨', 'Action', '2010-08-04', 119, 'korea', 19, '이정범', 6178665, 9.23);
+insert into movie values (null, '공조', 'Action', '2017-01-18', 125, 'korea', 15, '김상훈', 7817654, 8.83);
+insert into movie values (null, '엑시트', 'comedy', '2019-07-31', 103, 'Korea', 12, '이상근', 9418930, 9.01);
+insert into movie values (null, 'Iron man', 'SF', '2008-04-30', 125, 'US', 12, 'Jon Favreau', 4300365, 8.91);
+insert into movie values (null, 'Iron man2', 'SF', '2010-04-29', 125, 'US', 12, 'Jon Favreau', 4425235, 7.36);
+insert into movie values (null, 'Iron man3', 'SF', '2013-04-25', 129, 'US', 12, 'Shane Black', 9001679, 8.86);
+insert into movie values (null, 'The Avengers', 'SF', '2012-04-26', 142, 'US', 12, 'Joss Whedon', 7075607, 8.80);
+insert into movie values (null, 'The Avengers: Age of Ultron', 'Action', '2015-04-23', 141, 'US', 12, 'Joss Whedon', 10494840, 8.59);
+insert into movie values (null, 'Avengers: Infinity War', 'Action', '2018-04-25', 149, 'US', 12, 'Russo Brothers', 11212710, 9.08);
+insert into movie values (null, 'Avengers: Endgame', 'SF', '2019-04-24', 181, 'US', 12, 'Russo Brothers', 13934604, 9.50);
+
+//배우 정보(actor)
+insert into actor values (null, 'Christian Bale', '1974-01-30', 'male');	#브루스 웨인
+insert into actor values (null, 'Michael Caine', '1933-03-14', 'male');	#알프레드
+insert into actor values (null, 'Liam Nesson', '1952-06-07', 'male');	#라스알굴
+insert into actor values (null, 'Katie Holmes', '1978-12-18', 'female');	#레이첼 도스
+insert into actor values (null, 'Gary Oldman', '1958-03-21', 'male');	#짐 고든
+insert into actor values (null, 'Heath Ledger', '1979-04-04', 'male');	#조커
+insert into actor values (null, 'Aaron Eckhart', '1968-03-12', 'male');	#하비 덴트
+insert into actor values (null, 'Maggie Gyllenhaal', '1997-11-16', 'female');	#레이첼 도스
+insert into actor values (null, 'Anne Hathaway', '1982-11-12', 'female');	#셀리나 카일
+insert into actor values (null, 'Tom Hardy', '1977-09-15', 'male');	#베인
+
+insert into actor values (null, '원빈', '1977-11-10', 'male');  	#차태식
+insert into actor values (null, '김새론', '2000-07-31', 'female');  #소미
+insert into actor values (null, '김태훈', '1975-05-26', 'male');	#김치곤
+insert into actor values (null, '김희원', '1971-01-10', 'male'); 	#만석
+insert into actor values (null, '김성오', '1978-09-15', 'male');    #종석
+
+insert into actor values (null, '조정석', '1980-12-26', 'male');	#용남
+insert into actor values (null, '임윤아', '1990-05-30', 'female');	#의주
+insert into actor values (null, '고두심', '1951-05-22', 'female');	#현옥
+insert into actor values (null, '박인환', '1945-01-16', 'male');	#장수
+insert into actor values (null, '김지영', '1974-09-07', 'female');	#정현
+
+insert into actor values (null, 'Robert Downey Jr', '1965-04-04', 'male');	#토니 스타크
+insert into actor values (null, 'Terrence Howard', '1969-03-11', 'male');	#제임스 로드
+insert into actor values (null, 'Jeff Bridges', '1949-12-04', 'male');	#오베디아
+insert into actor values (null, 'Gwyneth Paltrow', '1972-09-27', 'female');	#페퍼 포츠
+
+insert into actor values (null, 'Don Cheadle', '1964-11-29', 'male');	#제임스 로드
+insert into actor values (null, 'Scarlett Johansson', '1984-11-22', 'female');	#블랙 위도우,
+insert into actor values (null, 'Mickey Rourke', '1952-09-16', 'male');	#이안 반코
+
+insert into actor values (null, 'Ben kingsley', '1943-12-31', 'male');	#만다린
+insert into actor values (null, 'Guy Pearce', '1967-10-05', 'male');	#킬리언
+
+insert into actor values (null, 'Chirs Hemsworth', '1983-08-11', 'male');	#토르
+insert into actor values (null, 'Chris Evans', '1981-06-13', 'male');	#스티브 로저스
+insert into actor values (null, 'Mark Ruffalo', '1967-11-22', 'male');	#브루스 배너
+
+#어벤저스2는 어벤저스1과 동일
+
+insert into actor values (null, 'Josh Brolin', '1968-02-12', 'male');	#타노스
+insert into actor values (null, 'Benedict Cumberbatch', '1976-07-19', 'male');	#닥터 스트레인지
+
+#어벤저스4
+
+#공조
+insert into actor values (null, '현빈', '1982-09-25', 'male');	#철령
+insert into actor values (null, '유해진', '1970-01-04', 'male');	#강진태
+insert into actor values (null, '김주혁', '1970-10-03', 'male');	#차기성
+
+//출연 정보(cast) - (m_id, a_id, );
+insert into cast values (1, 1, '브루스 웨인');
+insert into cast values (1, 2, '알프레드');
+insert into cast values (1, 3, '라스알굴');
+insert into cast values (1, 4, '레이첼 도스');
+insert into cast values (1, 5, '짐 고든');
+
+insert into cast values (2, 1, '브루스 웨인');
+insert into cast values (2, 2, '알프레드');
+insert into cast values (2, 5, '짐 고든');
+insert into cast values (2, 8, '레이첼 도스');
+insert into cast values (2, 6, '조커');
+insert into cast values (2, 7, '하비 덴트');
+ 
+insert into cast values (3, 1, '브루스 웨인');
+insert into cast values (3, 2, '알프레드');
+insert into cast values (3, 5, '짐 고든');
+insert into cast values (3, 9, '셀리나 카일');
+insert into cast values (3, 10, '베인');
+
+insert into cast values (4, 11, '차태식');
+insert into cast values (4, 12, '소미');
+insert into cast values (4, 13, '김치곤');
+insert into cast values (4, 14, '만석');
+insert into cast values (4, 15, '종석');
+
+insert into cast values (5, 35, '철령');
+insert into cast values (5, 36, '강진태');
+insert into cast values (5, 37, '차기성');
+
+insert into cast values (6, 16, '용남');
+insert into cast values (6, 17, '의주');
+insert into cast values (6, 18, '현옥');
+insert into cast values (6, 19, '장수');
+insert into cast values (6, 20, '정현');
+
+insert into cast values (7, 21, '토니 스타크');
+insert into cast values (7, 22, '제임스 로드');
+insert into cast values (7, 23, '오베디아');
+insert into cast values (7, 24, '페퍼 포츠');
+
+insert into cast values (8, 21, '토니 스타크');
+insert into cast values (8, 24, '페퍼 포츠');
+insert into cast values (8, 25, '제임스 로드');
+insert into cast values (8, 26, '블랙위도우');
+insert into cast values (8, 27, '이안 반코');
+
+insert into cast values (9, 21, '토니 스타크');
+insert into cast values (9, 24, '페퍼 포츠');
+insert into cast values (9, 25, '제임스 로드');
+insert into cast values (9, 28, '만다린');
+insert into cast values (9, 29, '킬리언');
+
+insert into cast values (10, 21, '토니 스타크');
+insert into cast values (10, 26, '블랙위도우');
+insert into cast values (10, 30, '토르');
+insert into cast values (10, 31, '스티브 로저스');
+insert into cast values (10, 32, '브루스 배너');
+
+insert into cast values (11, 21, '토니 스타크');
+insert into cast values (11, 26, '블랙위도우');
+insert into cast values (11, 30, '토르');
+insert into cast values (11, 31, '스티브 로저스');
+insert into cast values (11, 32, '브루스 배너');
+
+insert into cast values (12, 21, '토니 스타크');
+insert into cast values (12, 26, '블랙위도우');
+insert into cast values (12, 30, '토르');
+insert into cast values (12, 31, '스티브 로저스');
+insert into cast values (12, 32, '브루스 배너');
+insert into cast values (12, 33, '타노스');
+insert into cast values (12, 34, '닥터 스트레인지');
+
+insert into cast values (13, 21, '토니 스타크');
+insert into cast values (13, 26, '블랙위도우');
+insert into cast values (13, 30, '토르');
+insert into cast values (13, 31, '스티브 로저스');
+insert into cast values (13, 32, '브루스 배너');
+insert into cast values (13, 33, '타노스');
+insert into cast values (13, 34, '닥터 스트레인지');
+
+//수상 정보(awards)
+insert into awards values (1, '2019', '골든 글로브 시상식 남우주연상');
+insert into awards values (1, '2016', '새틀라이트 어워즈 남우조연상');
+
+insert into awards values (2, '2015', '유럽영화상 명예상');
+insert into awards values (2, '2011', '프랑스 문화예술 공로훈장 기사장');
+
+insert into awards values (3, '2005', '팜스프링스 국제영화제 공로상');
+insert into awards values (3, '2005', '아일랜드 필름 앤 텔레비전 어워즈 남우주연상');
+
+insert into awards values (4, '1999', 'MTV영화제 여우신인상');
+
+insert into awards values (5, '2018', '아카데미 시상식 남우주연상');
+
+insert into awards values (6, '2009', '아카데미 시상식 남우주연상');
+insert into awards values (6, '2009', '골든글로브 시상식 남우조연상');
+
+insert into awards values (7, '1998', '새틀라이트 어워즈 특별공헌상');
+
+insert into awards values (8, '2015', '골든글로브 시상식 여우주연상');
+
+insert into awards values (9, '2009', '아카데미 시상식 여우조연상');
+
+insert into awards values (10, '2016', '런던 비평가 협회상 영국남우주연상');
+
+insert into awards values (11, '2011', '대종상영화제 인기상');
+
+insert into awards values (12, '2016', '코리아 드라마 어워즈 여자신인상');
+
+insert into awards values (16, '2016', 'SAF 연기대상 10대스타상');
+
+insert into awards values (17, '2019', '부일영화상 여자 인기스타상');
+
+insert into awards values (18, '2015', 'KBS 연기대상 대상');
+
+insert into awards values (19, '2000', 'SBS 연기대상 최우수연기상');
+
+insert into awards values (20, '2016', 'SAF 연기대상 여자 우수연기상');
+
+insert into awards values (21, '2015', 'MTV영화제 제너레이션상');
+
+insert into awards values (22, '2006', '팜스프링스 국제영화제 라이징스타상');
+insert into awards values (22, '2006', '벤쿠버 비평가협회 남우조연상');
+
+insert into awards values (23, '2017', '산타바바라 국제영화제 아메리칸 리비에라상');
+
+insert into awards values (24, '2011', '밤비 미디어 어워즈 필름 인터네셔널상');
+
+insert into awards values (25, '2013', '골든 글로브 시상식 남우주연상');
+insert into awards values (25, '2012', '블랙릴어워즈 남우조연상');
+
+insert into awards values (26, '2013', '로마국제영화제 여우주연상');
+insert into awards values (26, '2010', '토니상 연극부문 여우조연상');
+
+insert into awards values (27, '2009', '산타바바라국제영화제 리비에라상');
+insert into awards values (27, '2009', '온라인 영화 비평가 협회상 남우주연상');
+
+insert into awards values (28, '2014', '새턴 어워즈 남우조연상');
+insert into awards values (28, '2002', '크리틱스 초이스 시상식 남우조연상');
+
+insert into awards values (29, '2002', '라스베가스 영퐈비평가협회상 남우조연상');
+
+insert into awards values (30, '2013', 'MTV영화제 최고의 싸움상');
+
+insert into awards values (31, '2013', 'MTV영화제 최고의 싸움상');
+
+insert into awards values (32, '2016', '산타바바라 국제영화제 아메리칸 리비에라상');
+
+insert into awards values (33, '2008', '할리우드 영화제 올해의 배우상');
+insert into awards values (33, '2008', '전미비평가협회 최우수 남자조연상');
+
+insert into awards values (34, '2019', '영국 아카데미 TV 어워드 남우주연상');
+insert into awards values (34, '2015', '대영 제국 훈장');
+insert into awards values (34, '2014', '할리우드 필름 어워드 남우주연상');
+
+#insert into awards values (35, '2011', '백상예술대상 TV부문 대상');
+
+#insert into awards values (36, '2015', '황금촬영상 시상식 최우수 남우조연상');
+
+#insert into awards values (37, '2019', '백상예술대상 남자 조연상');
+#insert into awards values (37, '2018', '청룡영화상 남우조연상');
+
+
