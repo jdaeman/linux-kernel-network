@@ -47,8 +47,13 @@ select movie.title
 from movie
 where movie.grade >= 9 and movie.director = 'Christopher Nolan'
 ------------------------------------------------------------------------------------
-1-6, 동일한 년도의 수상한 배우들있는 년도 중 그 수가 가장 많은 년도
-
+1-6, 동일한 년도의 수상한 배우들있는 년도 중, 배우가 많은 순으로 정
+select awards.year, count(awards.a_id)
+from awards
+group by awards.year
+having count(awards.a_id) > 1
+order by count(awards.a_id) desc
+------------------------------------------------------------------------------------
 1-7, 한국에서 제작한 영화 중 관람객이 가장 많은 영화
 1-8, 영화 개봉 당시 60대 이상의 배우가 출연한 영화의 이름
 1-9, 관람객 수의 차이가 가장 영화의 이름
