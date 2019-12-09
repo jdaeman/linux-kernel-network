@@ -70,5 +70,15 @@ where exists (
     )
 ------------------------------------------------------------------------------------
 1-9, 관람객 수의 차이가 가장 영화의 이름
-
+select movie.title, movie.attendance
+from movie
+where movie.attendance = (select max(movie.attendance)
+                          from movie
+                          )
+                          or
+      movie.attendance = (select min(movie.attendance)
+                          from movie
+                          )
+------------------------------------------------------------------------------------
 1-10, 5작품 이상 출연한 배우의 수
+
