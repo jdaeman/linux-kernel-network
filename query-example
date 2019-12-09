@@ -81,4 +81,7 @@ where movie.attendance = (select max(movie.attendance)
                           )
 ------------------------------------------------------------------------------------
 1-10, 5작품 이상 출연한 배우의 수
-
+select actor.name
+from actor natural join cast
+group by cast.a_id
+having count(cast.m_id) >= 3
