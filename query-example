@@ -55,6 +55,20 @@ having count(awards.a_id) > 1
 order by count(awards.a_id) desc
 ------------------------------------------------------------------------------------
 1-7, 한국에서 제작한 영화 중 관람객이 가장 많은 영화
+select movie.title, max(movie.attendance)
+from movie
+where movie.country='Korea'
+------------------------------------------------------------------------------------
 1-8, 영화 개봉 당시 60대 이상의 배우가 출연한 영화의 이름
+select movie.title
+from movie
+where exists (
+    select cast.a_id
+    from cast natural join actor
+    where cast.m_id = movie.m_id and 
+    (to_days(movie.release_date) - to_days(actor.birth)) / 365 >= 60
+    )
+------------------------------------------------------------------------------------
 1-9, 관람객 수의 차이가 가장 영화의 이름
+
 1-10, 5작품 이상 출연한 배우의 수
